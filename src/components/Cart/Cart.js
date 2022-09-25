@@ -5,13 +5,12 @@ import './Cart.css'
 
 const Cart = ({ cart }) => {
 
-
     // cart.map(product => console.log(product.price))
     const total = cart.reduce((x, y) => x + y.price, 0)
-    const totalShippingCharge = 0
+    const totalShippingCharge = cart.reduce((x, y) => x + y.shipping, 0)
     const tax = total / 10
     const grandTotal = total + totalShippingCharge + tax
-
+    console.log(cart);
 
     return (
         <div className='cart'>
@@ -20,7 +19,7 @@ const Cart = ({ cart }) => {
                 <p>Selected Items: {cart.length}</p>
                 <p>Total Price: $ {total}</p>
                 <p>Total Shipping Charge: ${totalShippingCharge}</p>
-                <p>Tax: ${tax}</p>
+                <p>Tax: ${tax.toFixed(2)}</p>
                 <h3>Grand Total: ${grandTotal.toFixed(2)}</h3>
             </div>
             <div className="buttons">
